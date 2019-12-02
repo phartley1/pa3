@@ -61,8 +61,9 @@ unsigned int PokemonCenter::DistributeStamina(unsigned int points_needed)
 	}
 	else if(num_stamina_points_remaining < points_needed)
 	{
-		return num_stamina_points_remaining;
+		unsigned int temp = num_stamina_points_remaining;
 		num_stamina_points_remaining = 0;
+		return temp;
 	}
 }
 
@@ -85,5 +86,8 @@ void PokemonCenter::ShowStatus()
 	cout << "Pokemon Center Status: " << endl;
 	Building::ShowStatus();
 	cout << "Pokemon dollars per stamina point: ¥" << dollar_cost_per_stamina_point << endl;
-	cout << "This Pokemon Center has " << num_stamina_points_remaining << " stamina points remaining." << endl;
+	if(num_stamina_points_remaining == 1)
+		cout << "This Pokemon Center has " << num_stamina_points_remaining << " stamina point remaining." << endl;
+	else if(num_stamina_points_remaining < 1 || num_stamina_points_remaining > 1)
+		cout << "This Pokemon Center has " << num_stamina_points_remaining << " stamina points remaining." << endl;
 }
